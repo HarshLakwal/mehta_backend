@@ -193,7 +193,13 @@ exports.createProducts = async (req, res, next) => {
     }
 
     const { MODEL_NAME, BRAND_CODE_LIST } = sanitizedBody;
-    const newDataArray = sanitizedBody.Data || sanitizedBody.data || [];
+    let newDataArray = sanitizedBody.Data || sanitizedBody.data || [];
+
+    // Filter out header row - skip items where ITEM_CODE is 'Item/Model Code' (CSV/Excel header)
+    newDataArray = newDataArray.filter(item => {
+      const itemCode = item.ITEM_CODE || item['Item/Model Code'];
+      return itemCode && itemCode !== 'Item/Model Code';
+    });
 
     // Find existing product by MODEL_NAME and BRAND_CODE_LIST
     let existingProduct = await Product.findOne({
