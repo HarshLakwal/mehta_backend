@@ -19,7 +19,7 @@ app.use('/uploads', express.static('uploads'));
 
 // CORS Configuration
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://192.168.5.10:3000'],
+  origin: ['http://192.168.5.10:1235'],
   credentials: true,
   optionsSuccessStatus: 200
 }));
