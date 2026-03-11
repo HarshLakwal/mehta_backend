@@ -19,7 +19,7 @@ app.use('/uploads', express.static('uploads'));
 
 // CORS Configuration
 app.use(cors({
-  origin: ['http://192.168.5.10:1235'],
+  origin: ['http://192.168.5.10:1235', 'http://mehtastore.collabsoftech.com', 'https://mehtastore.collabsoftech.com'],
   credentials: true,
   optionsSuccessStatus: 200
 }));
